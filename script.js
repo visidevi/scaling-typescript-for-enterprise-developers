@@ -1,46 +1,21 @@
-console.log('Hello, world!');
-// interface City {
-//     name: string;
-//     country: string;
-//     population?: number; 
-// }
-// let newYork: City = {
-//     name: 'New York',
-//     country: 'USA',
-//     population: 8000000
-// }
-// console.log(newYork); // { name: 'New York', country: 'USA', population: 8000000 }
-// let london: City = {
-//     name: 'London',
-//     country: 'UK',
-// }
-// console.log(london); // { name: 'London', country: 'UK'
-// interface CapitalCity extends City {
-//     capitalBuilding: string;
-//     landmarks: string[];
-// }
-// const tokio: CapitalCity = {
-//     name: 'tokio',
-//     country: 'Japan',
-//     population: 13929286,
-//     capitalBuilding: 'Imperial Palace',
-//     landmarks: ['Tokyo Tower', 'Skytree']
-// }
-// console.log(tokio);
-var City = /** @class */ (function () {
-    function City(name) {
+var Hotel = /** @class */ (function () {
+    function Hotel(id, name, cost) {
+        this.amenities = [];
+        this.id = id;
         this.name = name;
+        this.cost = cost;
     }
-    return City;
+    Hotel.prototype.addAmenity = function (amenities) {
+        this.amenities.push(amenities);
+    };
+    Hotel.prototype.describeHotel = function () {
+        // The <hotel.name> costs <hotel.cost> and includes the following amenities: <hotel.amenities>
+        return "The ".concat(this.name, " costs ").concat(this.cost, " and includes the following amenities: ").concat(this.amenities.join(', '));
+    };
+    return Hotel;
 }());
-// Adding type guards to classes
-function outputLocation(location) {
-    if (location instanceof City) {
-        console.log(location.name);
-    }
-    else {
-        console.log(location.toUpperCase());
-    }
-}
-outputLocation(new City('Tokyo')); // Tokyo
-outputLocation('Copenhagen'); // TOKYO
+var peakLodge = new Hotel("06", "Peak Lodge", 250);
+peakLodge.addAmenity("breakfast");
+peakLodge.addAmenity("wifi");
+var description = peakLodge.describeHotel();
+console.log(description);

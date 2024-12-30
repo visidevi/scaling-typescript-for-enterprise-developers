@@ -1,49 +1,26 @@
-console.log('Hello, world!');
-// interface City {
-//     name: string;
-//     country: string;
-//     population?: number; 
-// }
+class Hotel {
+    readonly id: string;
+    readonly name: string;
+    cost: number;
+    amenities: string[] = [];
+    constructor(id: string, name: string, cost: number) {
+        this.id = id;
+        this.name = name;
+        this.cost = cost;
+    }
 
-// let newYork: City = {
-//     name: 'New York',
-//     country: 'USA',
-//     population: 8000000
-// }
-// console.log(newYork); // { name: 'New York', country: 'USA', population: 8000000 }
-// let london: City = {
-//     name: 'London',
-//     country: 'UK',
-// }
-// console.log(london); // { name: 'London', country: 'UK'
-// interface CapitalCity extends City {
-//     capitalBuilding: string;
-//     landmarks: string[];
-
-// }
-
-// const tokio: CapitalCity = {
-//     name: 'tokio',
-//     country: 'Japan',
-//     population: 13929286,
-//     capitalBuilding: 'Imperial Palace',
-//     landmarks: ['Tokyo Tower', 'Skytree']
-// }
-
-// console.log(tokio);
-
-class City {
-   constructor(public name: string) {}
-}
-// Adding type guards to classes
-
-
-function outputLocation(location: City | string) {
-    if (location instanceof City) {
-        console.log(location.name)
-    } else {
-        console.log(location.toUpperCase())
+    addAmenity(amenities:string) {
+        this.amenities.push(amenities);
+    }
+    describeHotel() {
+        // The <hotel.name> costs <hotel.cost> and includes the following amenities: <hotel.amenities>
+        return `The ${this.name} costs ${this.cost} and includes the following amenities: ${this.amenities.join(', ')}`;
     }
 }
-outputLocation(new City('Tokyo')); 
-outputLocation('Copenhagen'); 
+
+
+const peakLodge = new Hotel("06", "Peak Lodge", 250);
+peakLodge.addAmenity("breakfast");
+peakLodge.addAmenity("wifi");
+let description = peakLodge.describeHotel();
+console.log(description);
