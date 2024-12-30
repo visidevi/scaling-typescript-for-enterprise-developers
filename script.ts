@@ -7,7 +7,12 @@ class  City {
         this.name = name;
         this.country = country;
     }
-    getCity() {
+    getCity():string {
+        return `${this.name}, ${this.country}`;
+    }
+
+    // Method a function that lives inside the class
+    private getCityPrivate():string {
         return `${this.name}, ${this.country}`;
     }
 }
@@ -15,3 +20,4 @@ class  City {
 
 const berlin = new City('Berlin', 'Germany');
 console.log(berlin.getCity()); // Berlin, Germany
+
